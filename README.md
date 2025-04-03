@@ -1,4 +1,4 @@
-**Walmart Sales Data Processing
+## Walmart Sales Data Processing
 
 This project demonstrates an end-to-end data processing pipeline for Walmart sales data, showcasing skills in data cleaning, transformation, and database integration. The workflow processes raw transactional data into analysis-ready insights stored in a MySQL database.
 
