@@ -148,16 +148,6 @@ JOIN revenue_2023 r3 ON r2.branch = r3.branch
 WHERE r2.revenue > r3.revenue
 ORDER BY revenue_difference_percentage DESC;
 ```
-
----
-
-##  Files Included
-
-- `walmart_cleaning_script.py` — Python script for data cleaning
-- `walmart_cleaned_data.csv` — Cleaned dataset
-- `sql_analysis.sql` — SQL file with all analysis queries
-- `README.md` — Project overview and documentation
-
 ---
 
 ## Acknowledgments
