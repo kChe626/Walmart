@@ -150,6 +150,38 @@ ORDER BY revenue_difference_percentage DESC;
 ```
 ---
 
+
+## Power Bi Dashboard
+```markdown
+# Walmart Inc. Dashboard (Power BI)
+
+A dynamic dashboard analyzing **Year-to-Date (YTD)** and **Prior Year-to-Date (PYTD)** performance across regions, product categories, and time periods. Built with Power BI.
+```
+
+#### **A. Key Features**
+```markdown
+- **YTD vs PYTD Comparisons**: Interactive time intelligence metrics.
+- **Dynamic Filters**: Slicers for year and region
+
+```
+
+#### **B. Screenshots**
+ 
+![Dashboard Overview](https://github.com/kChe626/Walmart/blob/main/Walmart%20Power%20Bi%20Dashboard.gif)  
+
+
+
+#### **C. Tools & Technologies**
+```markdown
+- **Power BI**: Dashboarding and DAX formulas.
+- **Data Modeling**: Star schema with `dim_date`.
+- **DAX Measures**: Time, conditional logic.
+```
+
+---
+
+
+
 ## Acknowledgments
 
 - Walmart dataset from [https://www.kaggle.com/datasets/najir0123/walmart-10k-sales-datasets]
