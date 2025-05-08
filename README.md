@@ -2,13 +2,13 @@
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Power BI](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
 
-# 📦 Walmart Sales Data Cleaning & Analysis Project
+#  Walmart Sales Data Cleaning & Analysis Project
 
 This project demonstrates a complete data pipeline for Walmart sales data using **Python**, **SQL**, and **Power BI**. It covers everything from detecting encoding issues, cleaning raw data, exporting to MySQL, querying with SQL for insights, and finally visualizing the results using Power BI.
 
 ---
 
-## 🚀 Project Overview
+##  Project Overview
 
 - **Data Source**: Walmart 10K sales dataset from [Kaggle](https://www.kaggle.com/datasets/najir0123/walmart-10k-sales-datasets)
 - **Goal**: Transform raw transactional data into clean, analysis-ready insights
@@ -16,29 +16,29 @@ This project demonstrates a complete data pipeline for Walmart sales data using 
 
 ---
 
-## 🛠️ Data Cleaning Process (Python)
+##  Data Cleaning Process (Python)
 
-- 🔍 **Encoding Detection**: Used `chardet` to identify file encoding  
-- 📥 **Load Dataset**: Read the data into pandas using the detected encoding  
-- 🧹 **Clean Columns**: Lowercased column names and stripped whitespace  
-- 🧾 **Fix Data Types**: Converted `unit_price` from string to float  
-- ❌ **Remove Duplicates & Nulls**  
-- 💾 **Export**: Saved cleaned CSV and uploaded to MySQL using `sqlalchemy`
+-  **Encoding Detection**: Used `chardet` to identify file encoding  
+-  **Load Dataset**: Read the data into pandas using the detected encoding  
+-  **Clean Columns**: Lowercased column names and stripped whitespace  
+-  **Fix Data Types**: Converted `unit_price` from string to float  
+-  **Remove Duplicates & Nulls**  
+-  **Export**: Saved cleaned CSV and uploaded to MySQL using `sqlalchemy`
 
 ---
 
-## 🧠 SQL Analysis & Business Insights
+##  SQL Analysis & Business Insights
 
 Some of the key questions answered:
 
-### 📊 1. What are the most common payment methods?
+###  1. What are the most common payment methods?
 ```sql
 SELECT payment_method, COUNT(*) AS no_payments, SUM(quantity) AS no_qty_sold
 FROM walmart
 GROUP BY payment_method;
 ```
 
-### 🌟 2. Highest-rated category per branch
+###  2. Highest-rated category per branch
 ```sql
 SELECT branch, category, AVG(rating) AS avg_rating
 FROM walmart
@@ -46,14 +46,14 @@ GROUP BY branch, category
 ORDER BY branch, avg_rating DESC;
 ```
 
-### 📅 3. Busiest day per branch
+###  3. Busiest day per branch
 ```sql
 SELECT branch, DATE_FORMAT(STR_TO_DATE(date, '%d/%m/%y'), '%W') AS day_name, COUNT(*) AS no_transactions
 FROM walmart
 GROUP BY branch, day_name;
 ```
 
-### 💰 4. Year-over-Year Revenue Change
+###  4. Year-over-Year Revenue Change
 ```sql
 WITH revenue_2022 AS (
   SELECT branch, SUM(total) AS revenue
@@ -80,7 +80,7 @@ ORDER BY revenue_difference_percentage DESC;
 
 ---
 
-## 📈 Power BI Dashboard
+##  Power BI Dashboard
 
 An interactive Power BI dashboard showcasing:
 
@@ -89,12 +89,12 @@ An interactive Power BI dashboard showcasing:
 - **Customer Behavior by Time of Day**
 - **Branch-wise Comparison Metrics**
 
-📸 **Dashboard Preview**:  
+ **Dashboard Preview**:  
 ![Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart%20Power%20Bi%20Dashboard.gif)
 
 ---
 
-## 📋 Flowchart: Data Pipeline Overview
+##  Flowchart: Data Pipeline Overview
 
 ```mermaid
 graph TD
