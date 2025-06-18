@@ -8,23 +8,60 @@ This project demonstrates a complete data pipeline for Walmart sales data using 
 
 ---
 
-##  Project Overview
+##  Dateset
 
-- **Data Source**: Walmart 10K sales dataset from [Kaggle](https://www.kaggle.com/datasets/najir0123/walmart-10k-sales-datasets)
-- **Goal**: Transform raw transactional data into clean, analysis-ready insights
-- **Tools Used**: Python (pandas, chardet), MySQL, Power BI
+Dataset Overview
+
+The dataset contains:
+
+    invoice_id — Unique ID for each transaction
+
+    branch — Store branch code
+
+    city — City location
+
+    category — Product category
+
+    unit_price — Price per item (originally string with $)
+
+    quantity — Number of units purchased
+
+    date — Date of transaction
+
+    time — Time of transaction
+
+    payment_method — Type of payment (cash, e-wallet, credit card)
+
+    rating — Customer rating
+
+    profit_margin — Store profit margin
 
 ---
 
 ##  Data Cleaning Process (Python)
 
--  **Encoding Detection**: Used `chardet` to identify file encoding  
--  **Load Dataset**: Read the data into pandas using the detected encoding  
--  **Clean Columns**: Lowercased column names and stripped whitespace  
--  **Fix Data Types**: Converted `unit_price` from string to float  
--  **Remove Duplicates & Nulls**  
--  **Export**: Saved cleaned CSV and uploaded to MySQL using `sqlalchemy`
+- Removed duplicates: 51 duplicate records identified and removed to ensure data integrity.
+  ```sql
+  df.drop_duplicates(inplace=True)
+  ```
+- Handled missing values: Dropped 31 rows missing critical fields (unit_price, quantity).
+  ```sql
+  df.dropna(subset=['unit_price', 'quantity'], inplace=True)
+  ```
+- Cleaned and transformed fields:
+  ```sql
+  df['unit_price'] = df['unit_price'].str.replace('$', '', regex=False).astype(float)
+  df['total'] = df['unit_price'] * df['quantity']
+  ```
+- Convert date
+  ```sql
+  df['date'] = pd.to_datetime(df['date'], format='%d/%m/%y')
+  ```
 
+- Saved cleaned data
+
+
+  [See full cleaning code](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
 ---
 
 ##  SQL Analysis & Business Insights
