@@ -62,58 +62,6 @@ The dataset contains:
 
 
   [See full cleaning code](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
----
-
-##  SQL Analysis & Business Insights
-
-Some of the key questions answered:
-
-###  1. What are the most common payment methods?
-```sql
-SELECT payment_method, COUNT(*) AS no_payments, SUM(quantity) AS no_qty_sold
-FROM walmart
-GROUP BY payment_method;
-```
-
-###  2. Highest-rated category per branch
-```sql
-SELECT branch, category, AVG(rating) AS avg_rating
-FROM walmart
-GROUP BY branch, category
-ORDER BY branch, avg_rating DESC;
-```
-
-###  3. Busiest day per branch
-```sql
-SELECT branch, DATE_FORMAT(STR_TO_DATE(date, '%d/%m/%y'), '%W') AS day_name, COUNT(*) AS no_transactions
-FROM walmart
-GROUP BY branch, day_name;
-```
-
-###  4. Year-over-Year Revenue Change
-```sql
-WITH revenue_2022 AS (
-  SELECT branch, SUM(total) AS revenue
-  FROM walmart
-  WHERE EXTRACT(YEAR FROM STR_TO_DATE(date, '%d/%m/%y')) = 2022
-  GROUP BY branch
-),
-revenue_2023 AS (
-  SELECT branch, SUM(total) AS revenue
-  FROM walmart
-  WHERE EXTRACT(YEAR FROM STR_TO_DATE(date, '%d/%m/%y')) = 2023
-  GROUP BY branch
-)
-SELECT 
-  r2.branch,
-  r2.revenue AS last_year_revenue,
-  r3.revenue AS current_year_revenue,
-  ROUND((r2.revenue - r3.revenue) / r2.revenue * 100, 2) AS revenue_difference_percentage
-FROM revenue_2022 r2
-JOIN revenue_2023 r3 ON r2.branch = r3.branch
-WHERE r2.revenue > r3.revenue
-ORDER BY revenue_difference_percentage DESC;
-```
 
 ---
 
@@ -154,8 +102,7 @@ FROM walmart_cleaned_data_python
 GROUP BY sales_year, sales_month
 ORDER BY sales_year, sales_month;
 ```
-
-
+- [See full analysis code SQL](https://github.com/kChe626/Walmart/blob/main/walmart_analysis_data_SQL.sql)
 ---
 
 ##  Power BI Dashboard
@@ -173,8 +120,14 @@ An interactive Power BI dashboard showcasing:
 ---
 
 
+## Files
+- Python: [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
+- SQL: [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/walmart_analysis_data_SQL.sql)
+- PowerBi Dashboard: [Walmart Dashboard PowerBI](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)
+
+---
+
+## Datasource
+
 
 - Walmart dataset from [https://www.kaggle.com/datasets/najir0123/walmart-10k-sales-datasets]
-- Python: [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/walmart_python_cleaned_data.ipynbx)
-- SQL: [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)
-- Tableau: [Walmart Dashboard PowerBI](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)
