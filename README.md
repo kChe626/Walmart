@@ -94,20 +94,6 @@ An interactive Power BI dashboard showcasing:
 
 ---
 
-##  Flowchart: Data Pipeline Overview
-
-```mermaid
-graph TD
-    A[Raw Walmart CSV Data] --> B[Detect Encoding with chardet]
-    B --> C[Load into Pandas DataFrame]
-    C --> D[Clean Columns, Fix Data Types, Remove Nulls]
-    D --> E[Export Cleaned Data to CSV]
-    E --> F[Upload to MySQL using SQLAlchemy]
-    F --> G[Run SQL Queries for Business Insights]
-    G --> H[Visualize in Power BI]
-```
-
----
 
 
 - Walmart dataset from [https://www.kaggle.com/datasets/najir0123/walmart-10k-sales-datasets]
