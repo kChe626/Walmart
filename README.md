@@ -117,6 +117,47 @@ ORDER BY revenue_difference_percentage DESC;
 
 ---
 
+##  SQL Analysis & Business Insights
+Below are example SQL queries used to analyze the Walmart dataset.
+
+### Top-Selling Categories
+Identify the most popular product categories by units sold.
+```sql
+SELECT 
+    category, 
+    SUM(quantity) AS total_units_sold
+FROM walmart_cleaned_data_python
+GROUP BY category
+ORDER BY total_units_sold DESC
+LIMIT 5;
+```
+
+### Revenue by Payment Method
+See which payment methods generate the most revenue.
+```sql
+SELECT 
+    payment_method, 
+    ROUND(SUM(total), 2) AS total_revenue
+FROM walmart_cleaned_data_python
+GROUP BY payment_method
+ORDER BY total_revenue DESC;
+```
+
+###  Monthly Revenue Trend
+Track how revenue changes over time to identify seasonality.
+```sql
+SELECT 
+    YEAR(date) AS sales_year, 
+    MONTH(date) AS sales_month, 
+    ROUND(SUM(total), 2) AS monthly_revenue
+FROM walmart_cleaned_data_python
+GROUP BY sales_year, sales_month
+ORDER BY sales_year, sales_month;
+```
+
+
+---
+
 ##  Power BI Dashboard
 
 An interactive Power BI dashboard showcasing:
