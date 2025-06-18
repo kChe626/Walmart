@@ -41,20 +41,20 @@ The dataset contains:
 ##  Data Cleaning Process (Python)
 
 - Removed duplicates: 51 duplicate records identified and removed to ensure data integrity.
-  ```sql
+  ```python
   df.drop_duplicates(inplace=True)
   ```
 - Handled missing values: Dropped 31 rows missing critical fields (unit_price, quantity).
-  ```sql
+  ```python
   df.dropna(subset=['unit_price', 'quantity'], inplace=True)
   ```
 - Cleaned and transformed fields:
-  ```sql
+  ```python
   df['unit_price'] = df['unit_price'].str.replace('$', '', regex=False).astype(float)
   df['total'] = df['unit_price'] * df['quantity']
   ```
 - Convert date
-  ```sql
+  ```python
   df['date'] = pd.to_datetime(df['date'], format='%d/%m/%y')
   ```
 
