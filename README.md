@@ -2,7 +2,7 @@
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Power BI](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
 
-#  Walmart Sales Data Cleaning & Analysis Project
+#  Walmart Sales Analysis — Python Cleaning, SQL Analysis & Power BI Dashboard
 
 This project demonstrates a complete data pipeline for Walmart sales data using **Python**, **SQL**, and **Power BI**. It covers everything from detecting encoding issues, cleaning raw data, exporting to MySQL, querying with SQL for insights, and finally visualizing the results using Power BI.
 
@@ -10,33 +10,14 @@ This project demonstrates a complete data pipeline for Walmart sales data using 
 
 ##  Dateset
 
-Dataset Overview
+- Source: [Walmart.csv](https://github.com/kChe626/Walmart/blob/main/Walmart.csv)
+- Columns: Includes city, branch, category, quantity, unit price, total, payment method, date, and other transaction details.
 
-The dataset contains:
+## Objectives
 
-    invoice_id — Unique ID for each transaction
-
-    branch — Store branch code
-
-    city — City location
-
-    category — Product category
-
-    unit_price — Price per item (originally string with $)
-
-    quantity — Number of units purchased
-
-    date — Date of transaction
-
-    time — Time of transaction
-
-    payment_method — Type of payment (cash, e-wallet, credit card)
-
-    rating — Customer rating
-
-    profit_margin — Store profit margin
-
----
+- Clean and standardize sales data using Python.
+- Run SQL queries for business insights on categories, branches, revenue trends, and payment methods.
+- Visualize key metrics interactively in Power BI.  invoice_id — Unique ID for each transaction
 
 ##  Data Cleaning Process (Python)
 
