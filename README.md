@@ -23,7 +23,7 @@ This project demonstrates a complete data pipeline for Walmart sales data using 
 
 The Walmart dataset was cleaned using Python (pandas) to ensure consistency and prepare it for SQL analysis and Power BI visualization.
 
-## Key steps:
+## Key steps
 
 - Standardized column names: Converted all column names to lowercase with underscores for easier handling in code.
 - Standardized text fields: Cleaned fields like city, branch, category, and payment_method by converting to lowercase and trimming spaces.
@@ -38,7 +38,7 @@ The Walmart dataset was cleaned using Python (pandas) to ensure consistency and 
 
 [See full cleaning code](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
 
-## Example cleaning snippet:
+## Example cleaning snippet
 
 Standardize column names
 ```sql
@@ -62,7 +62,7 @@ Convert date
 df['date'] = pd.to_datetime(df['date'].astype(str).str.strip(), format='%d/%m/%y', errors='coerce')
 ```
 
-## Output:
+## Output
 
 A cleaned dataset saved as [walmart_cleaned.csv](https://github.com/kChe626/Walmart/blob/main/walmart_cleaned.csv) ready for SQL loading and Power BI dashboarding.
 
@@ -70,7 +70,7 @@ A cleaned dataset saved as [walmart_cleaned.csv](https://github.com/kChe626/Walm
 
 The cleaned Walmart dataset was loaded into a MySQL database for analysis. SQL queries were designed to generate business insights on sales, revenue, profitability, and performance across various dimensions.
 
-## Key analyses performed:
+## Key analyses performed
 
 - Top-selling product categories: Identified the top 5 categories by total units sold.
 - Monthly revenue trend: Tracked revenue patterns across months to uncover seasonality.
@@ -81,7 +81,7 @@ The cleaned Walmart dataset was loaded into a MySQL database for analysis. SQL q
 
  [See full analysis code SQL](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)
 
-## Example SQL snippet:
+## Example SQL snippet
 
 Top 5 product categories by units sold
 ```sql
@@ -93,7 +93,7 @@ GROUP BY category
 ORDER BY total_units_sold DESC
 LIMIT 5;
 ```
-## Output:
+## Output
 
 - The queries provided actionable insights into category sales, branch contributions, payment preferences, and profitability.
 - Results supported the creation of Power BI dashboards to visualize these patterns interactively.
@@ -102,14 +102,14 @@ LIMIT 5;
 
 An interactive Power BI dashboard was built to visualize Walmart’s 2022 sales performance using the cleaned dataset and SQL analysis results. The dashboard provides insights into regional, product, and time-based sales trends.
 
-## Key highlights:
+## Key highlights
 - YTD vs PYTD Sales: Compare current year-to-date sales against the prior year-to-date, showing growth or decline.
 - Bottom 10 Cities: Identify the cities contributing the least to YTD sales performance.
 - Monthly Sales Trend: Visualize how sales evolved across months, highlighting seasonal peaks and dips.
 - Unit Price vs Quantity Sold: Analyze price points and demand at the product level, broken down by city and category.
 - Payment and Category Mix: Explore sales distribution across different product categories and payment methods.
 
-## Dashboard Features:
+## Dashboard Features
 - Dynamic filters for year, city, and sales/quantity views.
 - Waterfall charts, treemaps, and combo charts for intuitive understanding of sales drivers.
 - Integration of SQL-calculated metrics and Python-cleaned data.
@@ -119,17 +119,11 @@ An interactive Power BI dashboard was built to visualize Walmart’s 2022 sales 
  **Dashboard Preview**:  
 ![Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart%20Power%20Bi%20Dashboard.gif)
 
----
-
 
 ## Files
 - Python: [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
 - SQL: [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)
 - PowerBi Dashboard: [Walmart Dashboard PowerBI](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)
 
----
-
 ## Datasource
-
-
 - Walmart dataset from [https://www.kaggle.com/datasets/najir0123/walmart-10k-sales-datasets]
