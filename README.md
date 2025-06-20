@@ -83,7 +83,7 @@ FROM walmart_cleaned_data_python
 GROUP BY sales_year, sales_month
 ORDER BY sales_year, sales_month;
 ```
-- [See full analysis code SQL](https://github.com/kChe626/Walmart/blob/main/walmart_analysis_data_SQL.sql)
+- [See full analysis code SQL](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)
 ---
 
 ##  Power BI Dashboard
@@ -103,7 +103,7 @@ An interactive Power BI dashboard showcasing:
 
 ## Files
 - Python: [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
-- SQL: [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/walmart_analysis_data_SQL.sql)
+- SQL: [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)
 - PowerBi Dashboard: [Walmart Dashboard PowerBI](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)
 
 ---
