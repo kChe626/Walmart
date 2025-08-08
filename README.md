@@ -1,129 +1,116 @@
+# **Walmart Sales Analysis — Python Cleaning, SQL Analysis & Power BI Dashboard**  
 ![Python](https://img.shields.io/badge/Python-3776AB.svg?style=for-the-badge&logo=Python&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![Power BI](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+---
 
-#  Walmart Sales Analysis — Python Cleaning, SQL Analysis & Power BI Dashboard
-
-This project demonstrates a complete data pipeline for Walmart sales data using **Python**, **SQL**, and **Power BI**. It covers everything from detecting encoding issues, cleaning raw data, exporting to MySQL, querying with SQL for insights, and finally visualizing the results using Power BI.
+## **Overview**  
+This project demonstrates a complete data pipeline for Walmart sales data using **Python**, **MySQL**, and **Power BI**.  
+The process covers data cleaning in Python, SQL-based business analysis, and an interactive Power BI dashboard to visualize sales performance.
 
 ---
 
-##  Dateset
+## **Dataset**
+- **Source:** [Walmart.csv](https://github.com/kChe626/Walmart/blob/main/Walmart.csv)  
+- **Columns:** city, branch, category, quantity, unit_price, total, payment_method, date, and other transaction details
 
-- Source: [Walmart.csv](https://github.com/kChe626/Walmart/blob/main/Walmart.csv)
-- Columns: Includes city, branch, category, quantity, unit price, total, payment method, date, and other transaction details.
+---
 
-## Objectives
+## **Objectives**
+- Clean and standardize sales data using Python  
+- Run SQL queries for business insights on categories, branches, revenue trends, and payment methods  
+- Visualize performance metrics in Power BI for interactive exploration
 
-- Clean and standardize sales data using Python.
-- Run SQL queries for business insights on categories, branches, revenue trends, and payment methods.
-- Visualize key metrics interactively in Power BI.  invoice_id — Unique ID for each transaction
+---
 
-##  Data Cleaning Process (Python)
+## **Data Cleaning Process (Python)**
+**Key Steps:**
+- Standardized column names for easier handling  
+- Cleaned text fields (lowercase, trimmed spaces)  
+- Converted `date` to proper datetime format  
+- Cleaned numeric fields and computed `total` column  
+- Removed duplicates and validated dataset
 
-The Walmart dataset was cleaned using Python (pandas) to ensure consistency and prepare it for SQL analysis and Power BI visualization.
-
-## Key steps
-
-- Standardized column names: Converted all column names to lowercase with underscores for easier handling in code.
-- Standardized text fields: Cleaned fields like city, branch, category, and payment_method by converting to lowercase and trimming spaces.
-- Converted date values: Parsed the date column using dd/mm/yy format, handling invalid or inconsistent entries safely.
-- Cleaned numeric fields:
-    - Removed $ symbols and commas from unit_price and converted to numeric.
-    - Ensured quantity and profit_margin were numeric and filled invalid values with 0.
-
-- Computed total: Created a total column by multiplying quantity and unit_price.
-- Removed duplicates: Dropped any exact duplicate rows to ensure data integrity.
-- Validated data: Checked data types, missing values, and consistency of computed fields.
-
-[See full cleaning code](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
-
-## Example cleaning snippet
-
-Standardize column names
-```sql
+**Example Snippets:**  
+```python
+# Standardize column names
 df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
-```
-Clean unit_price
-```sql
+
+# Clean unit_price
 df['unit_price'] = (
     df['unit_price'].astype(str)
     .str.replace(r'[\$,]', '', regex=True)
     .str.strip()
 )
 df['unit_price'] = pd.to_numeric(df['unit_price'], errors='coerce').fillna(0)
-```
-Compute total
-```sql
+
+# Compute total
 df['total'] = df['quantity'] * df['unit_price']
 ```
-Convert date
+
+ **Full Cleaning Script:** [Walmart_clean_python.ipynb](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)  
+ **Cleaned Dataset:** [walmart_cleaned.csv](https://github.com/kChe626/Walmart/blob/main/walmart_cleaned.csv)
+
+---
+
+## **SQL Analysis**
+**Objectives:**
+- Identify top-selling categories  
+- Track monthly revenue trends  
+- Compare branch performance  
+- Analyze payment method contributions  
+
+**Example Queries:**
 ```sql
-df['date'] = pd.to_datetime(df['date'].astype(str).str.strip(), format='%d/%m/%y', errors='coerce')
-```
-
-## Output
-
-A cleaned dataset saved as [walmart_cleaned.csv](https://github.com/kChe626/Walmart/blob/main/walmart_cleaned.csv) ready for SQL loading and Power BI dashboarding.
-
-## SQL Analysis Process
-
-The cleaned Walmart dataset was loaded into a MySQL database for analysis. SQL queries were designed to generate business insights on sales, revenue, profitability, and performance across various dimensions.
-
-## Key analyses performed
-
-- Top-selling product categories: Identified the top 5 categories by total units sold.
-- Monthly revenue trend: Tracked revenue patterns across months to uncover seasonality.
-- Branch performance: Calculated total revenue generated by each branch.
-- Payment method contribution: Analyzed the share of revenue by different payment methods.
-- Average profit margin: Compared profit margins across product categories to identify higher-margin items.
-- Revenue by day of week: Evaluated which days generated the most revenue to assess weekly trends.
-
- [See full analysis code SQL](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)
-
-## Example SQL snippet
-
-Top 5 product categories by units sold
-```sql
-SELECT 
-    category, 
-    SUM(quantity) AS total_units_sold
+-- Top 5 product categories by units sold
+SELECT category, SUM(quantity) AS total_units_sold
 FROM walmart_cleaned
 GROUP BY category
 ORDER BY total_units_sold DESC
 LIMIT 5;
+
+-- Monthly sales trend
+SELECT YEAR(date) AS sale_year, MONTH(date) AS sale_month, SUM(total) AS monthly_revenue
+FROM walmart_cleaned
+GROUP BY sale_year, sale_month
+ORDER BY sale_year, sale_month;
 ```
-## Output
 
-- The queries provided actionable insights into category sales, branch contributions, payment preferences, and profitability.
-- Results supported the creation of Power BI dashboards to visualize these patterns interactively.
+ **Full Analysis Script:** [walmart_sql_analysis.sql](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)
 
-##  Power BI Dashboard
+---
 
-An interactive Power BI dashboard was built to visualize Walmart’s 2022 sales performance using the cleaned dataset and SQL analysis results. The dashboard provides insights into regional, product, and time-based sales trends.
+## **Key Insights**
+- Certain product categories drive the majority of unit sales  
+- Revenue trends reveal seasonal peaks and slow periods  
+- Branch-level performance varies significantly across locations  
+- Payment preferences differ by customer segment
 
-## Key highlights
-- YTD vs PYTD Sales: Compare current year-to-date sales against the prior year-to-date, showing growth or decline.
-- Bottom 10 Cities: Identify the cities contributing the least to YTD sales performance.
-- Monthly Sales Trend: Visualize how sales evolved across months, highlighting seasonal peaks and dips.
-- Unit Price vs Quantity Sold: Analyze price points and demand at the product level, broken down by city and category.
-- Payment and Category Mix: Explore sales distribution across different product categories and payment methods.
+---
 
-## Dashboard Features
-- Dynamic filters for year, city, and sales/quantity views.
-- Waterfall charts, treemaps, and combo charts for intuitive understanding of sales drivers.
-- Integration of SQL-calculated metrics and Python-cleaned data.
+## **Preview**
+![Walmart Power BI Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart%20Power%20Bi%20Dashboard.gif)
 
-[See full PowerBi dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)
+---
 
- **Dashboard Preview**:  
-![Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart%20Power%20Bi%20Dashboard.gif)
+## **How to Open**
+1. Download the Power BI dashboard: [Walmart_Dashboard.pbix](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)  
+2. Open in Power BI Desktop  
+3. Refresh the data connection to use `walmart_cleaned.csv`  
 
+---
 
-## Files
-- Python: [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
-- SQL: [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)
-- PowerBi Dashboard: [Walmart Dashboard PowerBI](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)
+## **Use Cases**
+- **Retail Performance Monitoring:** Track sales and revenue over time  
+- **Product Strategy:** Identify high-demand categories  
+- **Branch Optimization:** Compare branch performance to reallocate resources  
+- **Customer Insights:** Understand payment method trends
 
-## Datasource
-- Walmart dataset from [https://www.kaggle.com/datasets/najir0123/walmart-10k-sales-datasets]
+---
+
+## **Files**
+- [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
+- [Cleaned Dataset](https://github.com/kChe626/Walmart/blob/main/walmart_cleaned.csv)  
+- [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)  
+- [Power BI Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)  
+
