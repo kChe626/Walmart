@@ -108,6 +108,11 @@ ORDER BY sale_year, sale_month;
 
 ---
 
+## **Business Relevance**
+The dashboard delivers actionable insights for retail operations teams to monitor branch performance, manage inventory levels, and optimize product assortment. Identifying peak sales periods and high-margin categories helps improve stock allocation and supply chain efficiency.
+
+---
+
 ## **Files**
 - [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
 - [Cleaned Dataset](https://github.com/kChe626/Walmart/blob/main/walmart_cleaned.csv)  
