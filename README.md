@@ -11,7 +11,7 @@ The process covers data cleaning in Python, SQL-based business analysis, and an 
 ---
 
 ## **Dataset**
-- **Source:** [Walmart.csv](https://github.com/kChe626/Walmart/blob/main/Walmart.csv)  
+- **Source:** [Walmart.csv](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/data/Walmart.csv)  
 - **Columns:** city, branch, category, quantity, unit_price, total, payment_method, date, and other transaction details
 
 ---
@@ -48,8 +48,8 @@ df['unit_price'] = pd.to_numeric(df['unit_price'], errors='coerce').fillna(0)
 df['total'] = df['quantity'] * df['unit_price']
 ```
 
- **Full Cleaning Script:** [Walmart_clean_python.ipynb](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)  
- **Cleaned Dataset:** [walmart_cleaned.csv](https://github.com/kChe626/Walmart/blob/main/walmart_cleaned.csv)
+ **Full Cleaning Script:** [Walmart_clean_python.ipynb](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/scripts/Walmart_clean_python.ipynb)  
+ **Cleaned Dataset:** [walmart_cleaned.csv](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/data/walmart_cleaned.csv)
 
 ---
 
@@ -76,7 +76,7 @@ GROUP BY sale_year, sale_month
 ORDER BY sale_year, sale_month;
 ```
 
- **Full Analysis Script:** [walmart_sql_analysis.sql](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)
+ **Full Analysis Script:** [walmart_sql_analysis.sql](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/scripts/walmart_sql_analysis.sql)
 
 ---
 
@@ -89,12 +89,12 @@ ORDER BY sale_year, sale_month;
 ---
 
 ## **Preview**
-![Walmart Power BI Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart%20Power%20Bi%20Dashboard.gif)
+![Walmart Power BI Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/image/Walmart%20Power%20Bi%20Dashboard.gif)
 
 ---
 
 ## **How to Open**
-1. Download the Power BI dashboard: [Walmart_Dashboard.pbix](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)  
+1. Download the Power BI dashboard: [Walmart_Dashboard.pbix](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/power_bi/Walmart_Dashboard.pbix)  
 2. Open in Power BI Desktop  
 3. Refresh the data connection to use `walmart_cleaned.csv`  
 
@@ -114,8 +114,8 @@ The dashboard delivers actionable insights for retail operations teams to monito
 ---
 
 ## **Files**
-- [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/Walmart_clean_python.ipynb)
-- [Cleaned Dataset](https://github.com/kChe626/Walmart/blob/main/walmart_cleaned.csv)  
+- [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/scripts/Walmart_clean_python.ipynb)
+- [Cleaned Dataset](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/data/walmart_cleaned.csv)  
 - [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)  
-- [Power BI Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard.pbix)  
+- [Power BI Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/power_bi/Walmart_Dashboard.pbix)  
 
