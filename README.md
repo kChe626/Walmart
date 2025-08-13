@@ -116,6 +116,6 @@ The dashboard delivers actionable insights for retail operations teams to monito
 ## **Files**
 - [Python Cleaning Script](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/scripts/Walmart_clean_python.ipynb)
 - [Cleaned Dataset](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/data/walmart_cleaned.csv)  
-- [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/walmart_sql_analysis.sql)  
+- [SQL Analysis Script](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/scripts/walmart_sql_analysis.sql)  
 - [Power BI Dashboard](https://github.com/kChe626/Walmart/blob/main/Walmart_Dashboard/power_bi/Walmart_Dashboard.pbix)  
 
